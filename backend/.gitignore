@@ -1,0 +1,38 @@
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual Environment directories
+venv/
+env/
+.env/
+
+# Flask instance folder
+instance/
+
+# Application config files (environment variables)
+*.env
+
+# IDE or editor config files
+.vscode/
+.idea/
+
+# MacOS Finder files
+.DS_Store
+
+# Windows thumbnail cache
+Thumbs.db
+
+# Log files
+*.log
+mental_health_bot.log
+
+# Temporary files
+*.bak
+*.swp
+*.swo
+
+# Flask database files (if you're using SQLite or similar)
+*.sqlite3
+*.db
