@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar';
 import { auth } from '../firebase/firebaseConfig';
 import { useRouter } from 'next/navigation';
 import { onAuthStateChanged } from 'firebase/auth';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
@@ -79,9 +80,10 @@ const Chatbot = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-cover bg-center bg-gradient-to-t from-pink-200 via-pink-300 to-pink-400 bg-opacity-50">
+      <div className="min-h-screen bg-cover bg-center bg-gradient-to-t from-pink-200 via-pink-300 to-pink-400 bg-opacity-50 sm-w-screen">
         <div className="flex flex-col justify-end min-h-screen pt-20 pb-16 px-4">
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-white bg-opacity-80 rounded-lg shadow-xl">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-pink-100 bg-opacity-80 rounded-lg shadow-xl ">
+      
             {/* Displaying Messages */}
             {messages.map((msg, index) => (
               <div
@@ -89,9 +91,27 @@ const Chatbot = () => {
                 className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-xs p-3 rounded-lg ${msg.sender === 'user' ? 'bg-pink-600 text-white' : 'bg-pink-100 text-gray-700'}`}
+                  className={`max-w-md p-3 flex flex-row gap-4   rounded-lg border-2 border-white ${msg.sender === 'user' ? 'bg-pink-500 text-white' : 'bg-pink-300 text-gray-700 '}`}
                 >
+                <div className='flex flex-start flex-row'>{msg.sender === 'user' ?  
+                <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                 <AvatarFallback>CN</AvatarFallback>
+                 </Avatar> 
+                 
+                 :  
+
+                 <Avatar>
+                <AvatarImage src="brain.webp" />
+                 <AvatarFallback>Bot</AvatarFallback>
+                 </Avatar> 
+                 
+                 
+                   }
+                   
+                   </div>
                   {msg.text}
+
                 </div>
               </div>
             ))}

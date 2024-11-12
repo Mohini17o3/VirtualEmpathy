@@ -8,11 +8,11 @@ export default function Home() {
     <div className="bg-gray-50 min-h-screen">
       <Navbar />
       {/* Hero Section with Updated Colors */}
-      <section className="h-screen bg-gradient-to-r from-pink-300 via-pink-300 to-pink-500 flex items-center justify-center text-center text-white relative">
+      <section className="h-screen bg-gradient-to-r from-pink-300 via-pink-400 via-pink-500 to-pink-600 flex items-center justify-center text-center text-white relative">
   <div className="absolute inset-0 bg-cover bg-center opacity-50" style={{ backgroundImage: "url('brain.webp')" }}></div>
   <div className="relative z-10 px-4 sm:px-6 lg:px-8">
-    <h1 className="text-5xl text-pink-700 font-extrabold mb-4">Your Mental Health Companion</h1>
-    <p className="text-xl mb-8 ">A safe space to talk, listen, and heal with AI-powered assistance.</p>
+    <h1 className="text-6xl text-white font-extrabold mb-4">Your Mental Health Companion</h1>
+    <p className="text-3xl mb-8 text-pink-700 ">A safe space to talk, listen, and heal with AI-powered assistance.</p>
     <Link href="/SignUp">
     <Button className="bg-pink-700 text-white py-3 px-8 rounded-full text-lg">
       Get Started
@@ -26,7 +26,7 @@ export default function Home() {
   <div className="max-w-7xl mx-auto px-6 text-center">
     <h2 className="text-3xl font-bold text-pink-600 mb-12">Features</h2>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-      <div className="p-6 bg-pink-50 rounded-xl shadow-lg">
+      <div className="p-6 bg-pink-200 rounded-xl shadow-lg">
         <img
           src="image1.jpg"
           alt="24/7 Availability"
@@ -35,7 +35,7 @@ export default function Home() {
         <h3 className="text-2xl font-semibold text-pink-600 mb-4">24/7 Availability</h3>
         <p className="text-gray-700">Our chatbot is available anytime you need a friendly ear or support.</p>
       </div>
-      <div className="p-6 bg-pink-50 rounded-xl shadow-lg">
+      <div className="p-6 bg-pink-200 rounded-xl shadow-lg">
         <img
           src="image2.webp"
           alt="Emotion Detection"
@@ -44,7 +44,7 @@ export default function Home() {
         <h3 className="text-2xl font-semibold text-pink-600 mb-4">Emotion Detection</h3>
         <p className="text-gray-700">Our AI listens actively and adapts to your emotional needs, offering personalized responses.</p>
       </div>
-      <div className="p-6 bg-pink-50 rounded-xl shadow-lg">
+      <div className="p-6 bg-pink-200 rounded-xl shadow-lg">
         <img
           src="image3.jpg"
           alt="Confidential Conversations"

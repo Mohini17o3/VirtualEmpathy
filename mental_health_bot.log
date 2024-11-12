@@ -1,0 +1,32 @@
+2024-11-12 11:23:55,580 - WARNING - Compute Engine Metadata server unavailable on attempt 1 of 3. Reason: timed out
+2024-11-12 11:23:59,636 - WARNING - Compute Engine Metadata server unavailable on attempt 2 of 3. Reason: timed out
+2024-11-12 11:24:04,802 - WARNING - Compute Engine Metadata server unavailable on attempt 3 of 3. Reason: timed out
+2024-11-12 11:24:04,803 - WARNING - Authentication failed using Compute Engine authentication due to unavailable metadata server.
+2024-11-12 11:24:04,803 - ERROR - Response generation error: 
+  No API_KEY or ADC found. Please either:
+    - Set the `GOOGLE_API_KEY` environment variable.
+    - Manually pass the key with `genai.configure(api_key=my_api_key)`.
+    - Or set up Application Default Credentials, see https://ai.google.dev/gemini-api/docs/oauth for more information.
+2024-11-12 11:24:04,806 - INFO - 127.0.0.1 - - [12/Nov/2024 11:24:04] "POST /chat HTTP/1.1" 200 -
+2024-11-12 11:24:32,150 - INFO - 127.0.0.1 - - [12/Nov/2024 11:24:32] "OPTIONS /chat HTTP/1.1" 200 -
+2024-11-12 11:24:37,250 - WARNING - Compute Engine Metadata server unavailable on attempt 1 of 3. Reason: timed out
+2024-11-12 11:24:41,309 - WARNING - Compute Engine Metadata server unavailable on attempt 2 of 3. Reason: timed out
+2024-11-12 11:24:46,393 - WARNING - Compute Engine Metadata server unavailable on attempt 3 of 3. Reason: timed out
+2024-11-12 11:24:46,394 - WARNING - Authentication failed using Compute Engine authentication due to unavailable metadata server.
+2024-11-12 11:24:46,394 - ERROR - Response generation error: 
+  No API_KEY or ADC found. Please either:
+    - Set the `GOOGLE_API_KEY` environment variable.
+    - Manually pass the key with `genai.configure(api_key=my_api_key)`.
+    - Or set up Application Default Credentials, see https://ai.google.dev/gemini-api/docs/oauth for more information.
+2024-11-12 11:24:46,396 - INFO - 127.0.0.1 - - [12/Nov/2024 11:24:46] "POST /chat HTTP/1.1" 200 -
+2024-11-12 11:25:07,517 - INFO - 127.0.0.1 - - [12/Nov/2024 11:25:07] "OPTIONS /chat HTTP/1.1" 200 -
+2024-11-12 11:25:12,788 - WARNING - Compute Engine Metadata server unavailable on attempt 1 of 3. Reason: timed out
+2024-11-12 11:25:16,850 - WARNING - Compute Engine Metadata server unavailable on attempt 2 of 3. Reason: timed out
+2024-11-12 11:25:22,058 - WARNING - Compute Engine Metadata server unavailable on attempt 3 of 3. Reason: timed out
+2024-11-12 11:25:22,058 - WARNING - Authentication failed using Compute Engine authentication due to unavailable metadata server.
+2024-11-12 11:25:22,059 - ERROR - Response generation error: 
+  No API_KEY or ADC found. Please either:
+    - Set the `GOOGLE_API_KEY` environment variable.
+    - Manually pass the key with `genai.configure(api_key=my_api_key)`.
+    - Or set up Application Default Credentials, see https://ai.google.dev/gemini-api/docs/oauth for more information.
+2024-11-12 11:25:22,060 - INFO - 127.0.0.1 - - [12/Nov/2024 11:25:22] "POST /chat HTTP/1.1" 200 -

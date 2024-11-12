@@ -32,7 +32,6 @@ class GeminiMentalHealthBot:
             "Crisis Hotline": "9152987821",
             "Emergency": "112",
             
-            
         }
 
         # System prompt for maintaining therapeutic context
@@ -136,7 +135,6 @@ class GeminiMentalHealthBot:
                 "I'm very concerned about what you're sharing and your safety is the top priority right now.",
                 "\nIMMEDIATE SUPPORT IS AVAILABLE:",
                 f"🆘 Crisis Hotline: {self.emergency_resources['Crisis Hotline']}",
-                f"📱 Crisis Text Line: {self.emergency_resources['Crisis Text Line']}",
                 f"🚨 Emergency: {self.emergency_resources['Emergency']}",
                 "\nPlease reach out to one of these services immediately - caring professionals are ready to help 24/7.",
             ]
