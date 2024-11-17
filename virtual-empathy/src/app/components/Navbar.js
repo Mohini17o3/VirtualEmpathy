@@ -48,7 +48,7 @@ window.addEventListener('scroll' , handleScroll) ;
 
 
   return (
-    <nav className="bg-transparent shadow-md sticky top-0 w-full z-50 transition-opacity duration-300 " style={{ opacity: opacity }} >
+    <nav className="bg-gradient-to-r from-pink-200 via-pink-300 to-pink-400 shadow-md sticky top-0 w-full z-50 transition-opacity duration-300 " style={{ opacity: opacity }} >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">

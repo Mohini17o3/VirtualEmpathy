@@ -27,12 +27,19 @@ const Chatbot = () => {
     return () => unsubscribe();
   }, [router]);
 
+
+  useEffect(() => {
+    setMessages([
+      { text: 'Hello! How can I assist you today? ', sender: 'bot', isFirstMessage: true }
+    ]);
+  }, []);
+
   const handleSendMessage = async () => {
     if (input.trim() && !isTyping) {
       // Add user's message to the messages array
       setMessages((prevMessages) => [
         ...prevMessages,
-        { text: input, sender: 'user' },
+        { text: input, sender: 'user'  ,  isFirstMessage: false },
       ]);
       setInput('');
       setIsTyping(true);
@@ -58,14 +65,14 @@ const Chatbot = () => {
         // Add bot's response to the messages array
         setMessages((prevMessages) => [
           ...prevMessages,
-          { text: data.response, sender: 'bot' },
+          { text: data.response, sender: 'bot'  , isFirstMessage : false},
         ]);
       } catch (error) {
         console.error('Error:', error);
         // If there's an error, display a fallback message
         setMessages((prevMessages) => [
           ...prevMessages,
-          { text: "I'm having trouble responding right now.", sender: 'bot' },
+          { text: "I'm having trouble responding right now.", sender: 'bot' ,  isFirstMessage: false  },
         ]);
       } finally {
         setIsTyping(false);
@@ -85,7 +92,7 @@ const Chatbot = () => {
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-pink-100 bg-opacity-80 rounded-lg shadow-xl ">
       
             {/* Displaying Messages */}
-            {messages.map((msg, index) => (
+            {messages.map((msg, index ) => (
               <div
                 key={index}
                 className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
@@ -110,7 +117,19 @@ const Chatbot = () => {
                    }
                    
                    </div>
-                  {msg.text}
+                 { msg.isFirstMessage ?  (
+                   
+                   <div> 
+                   {msg.text}
+                    <img src="https://i.pinimg.com/originals/c0/7a/0e/c07a0e54601516dbf8b399832636507a.gif"
+                  alt="Hello GIF"
+                  className="w-20 h-20"/>
+                  </div>
+
+                 ) : <div> {msg.text} </div>
+
+
+                 }  
 
                 </div>
               </div>
@@ -151,5 +170,3 @@ const Chatbot = () => {
 };
 
 export default Chatbot;
-
-
