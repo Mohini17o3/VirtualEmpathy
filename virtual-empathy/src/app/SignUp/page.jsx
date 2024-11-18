@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/firebaseConfig';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Navbar from '../components/Navbar';
 
 
 
@@ -37,6 +38,8 @@ const SignUp = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="flex min-h-screen flex-col lg:flex-row">
 
       <div className="w-full lg:w-1/2 bg-cover bg-center relative" style={{ backgroundImage: 'url(brain.webp)' }}>
@@ -104,6 +107,8 @@ const SignUp = () => {
       </div>
       </div>
     </div>
+
+    </>
   );
 };
 

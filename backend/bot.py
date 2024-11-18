@@ -20,6 +20,10 @@ class GeminiMentalHealthBot:
         genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
         self.gemini_model = genai.GenerativeModel("gemini-pro")
         self.nlp = spacy.load("en_core_web_sm")
+        self.happiness_scores = []
+        self.conversation_history = [] 
+        
+
 
         # Configure logging
         logging.basicConfig(
@@ -35,21 +39,47 @@ class GeminiMentalHealthBot:
         }
 
         # System prompt for maintaining therapeutic context
-        self.system_prompt = """You are a supportive AI assistant trained to provide emotional support while:
-        1. Never providing medical advice or diagnosis
-        2. Encouraging professional help when appropriate
-        3. Immediately escalating crisis situations to emergency services
-        4. Maintaining appropriate boundaries
-        5. Using evidence-based supportive techniques like active listening and validation
-        6. Being clear about being an AI assistant
-
-        For crisis situations, immediately provide emergency resources and crisis hotline information.
-        
-        Keep responses concise, empathetic, and focused on the user's immediate concerns.
-        """
+        self.system_prompt = """
+         You are a supportive AI assistant named as VirtualMate trained to provide emotional support in a compassionate, non-judgmental, and empathetic way.Your responses should always:
+         1. Listen actively to the user's feelings and emotions first.
+         2. Ask open-ended questions to understand why the user feels the way they do.
+         3. Offer validation and empathy by reflecting on their feelings.
+         4. When appropriate, gently suggest ways to cope or professional resources, but never push for immediate solutions.
+         5. Only escalate to crisis interventions when the user clearly expresses a crisis or emergency situation.
+         6. Maintain boundaries, but also be a friendly, understanding companion during difficult times.
+         7. Avoid providing medical or psychological advice and encourage users to reach out to professionals when needed.
+         """
 
         # Initialize Gemini chat
         self.chat = self.gemini_model.start_chat(history=[])
+    def calculate_sentiment(self, text):
+        """
+        Analyze sentiment of the text to derive polarity score (-1 to 1).
+        """
+        from textblob import TextBlob
+        blob = TextBlob(text)
+        return blob.sentiment.polarity  
+      
+
+    def add_message(self, message):
+        """
+        Add user input to the conversation history and update happiness score.
+        """
+        sentiment_score = self.calculate_sentiment(message)
+        self.happiness_scores.append(sentiment_score)
+        self.conversation_history.append(message)
+        return sentiment_score  
+
+    def get_happiness_score(self):
+        """
+        Calculate average happiness score for the session as a percentage.
+        """
+        if not self.happiness_scores:
+            return 50  # Default neutral score
+        avg_sentiment = sum(self.happiness_scores) / len(self.happiness_scores)
+        logging.info(f"Calculated average sentiment: {avg_sentiment}")
+        return int((avg_sentiment + 1) * 50)  # Scale to 0-100
+
 
     def check_safety(self, text):
         """
@@ -144,6 +174,7 @@ class GeminiMentalHealthBot:
         """Fallback response when errors occur"""
         return "I apologize, but I'm having trouble processing your message right now. If you're in crisis, please contact emergency services or call 988 for immediate support."
 
+bot = GeminiMentalHealthBot()
 
 # Flask routes for API endpoints
 @app.route("/chat", methods=["POST"])
@@ -155,14 +186,20 @@ def chat():
 
         if not user_input:
             return jsonify({"error": "No message provided"}), 400
+        
 
-        bot = GeminiMentalHealthBot()
+
+        # Add user message to bot's history and update happiness score
+        sentiment_score = bot.add_message(user_input)
+
+
         response =  bot.generate_response(user_input, conversation_history)
 
         return jsonify(
             {
                 "response": response,
                 "timestamp": datetime.now().isoformat(),
+                "happiness_score": bot.get_happiness_score(),
             }
         )
 
@@ -174,6 +211,23 @@ def chat():
 @app.route("/health", methods=["GET"])
 def health_check():
     return jsonify({"status": "healthy"}), 200
+
+
+
+
+@app.route("/happiness", methods=["GET"])
+def happiness_score():
+    """
+    Return the happiness score for the current session.
+    """
+    try:
+        logging.info("Fetching happiness score...")
+        score = bot.get_happiness_score()
+        logging.info(f"Happiness score fetched successfully: {score}")
+        return jsonify({"happiness_score": score})
+    except Exception as e:
+        logging.error(f"Error fetching happiness score: {str(e)}")
+        return jsonify({"error": "Could not fetch happiness score"}), 500
 
 
 if __name__ == "__main__":
